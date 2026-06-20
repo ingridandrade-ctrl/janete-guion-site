@@ -465,14 +465,6 @@ em { font-style: italic; }
 .encontro__text { margin-bottom: 1.6rem; }
 .encontro--light .encontro__text { color: var(--brown); }
 .encontro--bordo .encontro__text { color: rgba(240, 235, 225, 0.9); }
-.encontro__meta {
-  font-size: 0.85rem;
-  letter-spacing: 0.03em;
-  margin-bottom: 2rem;
-  margin-top: auto;
-}
-.encontro--light .encontro__meta { color: var(--green); font-weight: 400; }
-.encontro--bordo .encontro__meta { color: rgba(240, 235, 225, 0.65); }
 .encontro .btn { align-self: flex-start; }
 
 /* ===================================================================
@@ -583,12 +575,17 @@ em { font-style: italic; }
 .faq__item summary::-webkit-details-marker { display: none; }
 .faq__item summary::after {
   content: "+";
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.7rem;
+  height: 1.7rem;
   font-family: var(--ff-body);
   font-weight: 300;
-  font-size: 1.7rem;
+  font-size: 1.55rem;
   color: var(--bordo);
-  transition: transform .3s var(--ease);
-  line-height: 1;
+  transition: transform .35s var(--ease);
+  line-height: 0;
 }
 .faq__item[open] summary::after { transform: rotate(45deg); }
 .faq__item p {
@@ -805,8 +802,7 @@ em { font-style: italic; }
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
-  margin: 0 0 2rem;
-  margin-top: auto;
+  margin: auto 0 2rem;
   padding-top: 1.6rem;
   border-top: 1px solid currentColor;
 }
@@ -893,7 +889,7 @@ em { font-style: italic; }
 .footer { text-align: left; }
 .footer__cols {
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr;
+  grid-template-columns: 1.7fr 1fr 1.15fr;
   gap: clamp(2rem, 5vw, 4rem);
   align-items: start;
   padding-bottom: 2.6rem;
@@ -936,7 +932,7 @@ em { font-style: italic; }
   border-color: var(--cream);
   transform: translateY(-2px);
 }
-.footer__cta { margin: 0; display: inline-flex; }
+.footer__cta { margin: 0; display: inline-flex; white-space: nowrap; }
 .footer__copy { margin-top: 0; text-align: center; }
 
 @media (max-width: 860px) {
