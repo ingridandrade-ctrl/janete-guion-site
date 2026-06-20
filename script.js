@@ -34,7 +34,20 @@
     if (e.key === "Escape") closeMenu();
   });
 
-  /* ---- Reveal on scroll ---- */
+  /* ---- Reveal on scroll (com stagger suave por grupo) ---- */
+  var reduceMotion = window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!reduceMotion) {
+    var groups = document.querySelectorAll(".cards-grid, .possivel__grid, .steps");
+    groups.forEach(function (group) {
+      var items = group.querySelectorAll(".reveal");
+      items.forEach(function (el, i) {
+        el.style.setProperty("--reveal-delay", (i * 80) + "ms");
+      });
+    });
+  }
+
   var revealEls = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(
