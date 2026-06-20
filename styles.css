@@ -212,22 +212,25 @@ em { font-style: italic; }
   position: relative;
   height: 100%;
   min-height: 60vh;
-  padding: clamp(1.5rem, 3vw, 2.4rem) clamp(1.5rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.4rem) 0;
+  padding: 0;
 }
 .hero__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: var(--radius-xl);
-  box-shadow: 0 40px 80px -40px rgba(26, 10, 6, 0.45);
+  object-position: 50% 16%;
+  border-radius: 0;
 }
 .hero__media::after {
   content: "";
   position: absolute;
-  inset: clamp(1.5rem, 3vw, 2.4rem) clamp(1.5rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.4rem) 0;
-  border-radius: var(--radius-xl);
-  background: linear-gradient(120deg, rgba(122,31,46,0.12) 0%, rgba(240,235,225,0) 45%);
+  inset: 0;
+  border-radius: 0;
   pointer-events: none;
+  background:
+    linear-gradient(to right, var(--cream) 0%, rgba(240,235,225,0.55) 16%, rgba(240,235,225,0) 46%),
+    linear-gradient(to bottom, rgba(240,235,225,0) 60%, rgba(240,235,225,0.6) 86%, var(--cream) 100%),
+    linear-gradient(to top, rgba(240,235,225,0) 90%, var(--cream) 100%);
 }
 
 /* scroll cue */
@@ -660,8 +663,11 @@ em { font-style: italic; }
     min-height: auto;
   }
   .hero__media { order: -1; min-height: 56vh; }
+  .hero__media img { object-position: 50% 14%; }
   .hero__media::after {
-    background: linear-gradient(0deg, var(--cream) 0%, rgba(240,235,225,0) 30%);
+    background:
+      linear-gradient(to bottom, rgba(240,235,225,0) 60%, rgba(240,235,225,0.6) 84%, var(--cream) 100%),
+      linear-gradient(to top, rgba(240,235,225,0) 90%, var(--cream) 100%);
   }
   .hero__text { padding: 2.5rem var(--gutter) 3.5rem; justify-self: stretch; max-width: 640px; margin-inline: auto; }
 
@@ -845,7 +851,8 @@ em { font-style: italic; }
 /* ---- HERO: floating accent card ---- */
 .hero__badge {
   position: absolute;
-  left: clamp(0.5rem, 2vw, 1.5rem);
+  z-index: 2;
+  right: clamp(1rem, 3vw, 2.4rem);
   bottom: clamp(2rem, 5vw, 3.6rem);
   display: flex;
   align-items: center;
@@ -945,7 +952,7 @@ em { font-style: italic; }
 
 @media (max-width: 600px) {
   .footer__cta { width: 100%; }
-  .hero__badge { left: 50%; transform: translateX(-50%); bottom: 1.4rem; }
+  .hero__badge { left: 50%; right: auto; transform: translateX(-50%); bottom: 1.4rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
