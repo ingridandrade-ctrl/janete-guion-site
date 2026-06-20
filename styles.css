@@ -103,11 +103,16 @@ em { font-style: italic; }
 .section__title {
   font-family: var(--ff-head);
   font-weight: 600;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  font-size: clamp(2.1rem, 1.3rem + 3.6vw, 4rem);
+  line-height: 1.1;
+  letter-spacing: -0.018em;
+  font-size: clamp(2rem, 1.45rem + 2.5vw, 3.3rem);
+  text-wrap: balance;
 }
-.section__title--center { text-align: center; margin-inline: auto; max-width: 18ch; }
+.section__title--center {
+  text-align: center;
+  margin-inline: auto;
+  max-width: 26ch;
+}
 
 .lead {
   font-size: clamp(1.12rem, 1rem + 0.65vw, 1.45rem);
@@ -182,10 +187,10 @@ em { font-style: italic; }
 .hero__title {
   font-family: var(--ff-head);
   font-weight: 500;
-  font-size: clamp(2.6rem, 1.2rem + 5.4vw, 5rem);
-  line-height: 1.0;
-  letter-spacing: -0.03em;
-  margin-bottom: 2rem;
+  font-size: clamp(2.5rem, 1.5rem + 3.9vw, 4.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.022em;
+  margin-bottom: 1.9rem;
 }
 .hero__title em { color: var(--bordo); font-weight: 600; }
 .hero__sub {
