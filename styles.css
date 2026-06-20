@@ -283,13 +283,14 @@ em { font-style: italic; }
   font-size: 0.7rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(240, 235, 225, 0.5);
+  color: rgba(240, 235, 225, 0.55);
 }
 .strip__value {
   font-family: var(--ff-head);
-  font-size: clamp(1.18rem, 1rem + 0.5vw, 1.4rem);
+  font-size: clamp(1.75rem, 1.2rem + 1.8vw, 2.7rem);
   font-weight: 500;
-  letter-spacing: -0.01em;
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 
 /* ===================================================================
@@ -373,16 +374,16 @@ em { font-style: italic; }
   border-bottom: 1px solid var(--cream-line);
 }
 .step:last-child { border-bottom: none; padding-bottom: 0; }
-.step__num {
+.step__digits {
   font-family: var(--ff-head);
   font-weight: 500;
-  font-size: clamp(2.4rem, 1.8rem + 1.6vw, 3.4rem);
+  font-size: clamp(1.6rem, 1.2rem + 1vw, 2.1rem);
   color: var(--bordo);
   line-height: 0.9;
-  opacity: 0.35;
+  opacity: 0.4;
   transition: opacity .4s var(--ease);
 }
-.step:hover .step__num { opacity: 0.7; }
+.step:hover .step__digits { opacity: 0.75; }
 .step__title {
   font-family: var(--ff-head);
   font-weight: 600;
@@ -682,6 +683,277 @@ em { font-style: italic; }
   .btn { width: 100%; }
   .encontro .btn, .hero__actions .btn { width: 100%; }
   .hero__actions, .cta__inner, .encontro { width: 100%; }
+}
+
+/* ===================================================================
+   MICRO-ELEMENTS — icons, chips, checklists, badges
+   =================================================================== */
+
+/* ---- Base line icon ---- */
+.ico {
+  width: 1.25em;
+  height: 1.25em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: none;
+}
+
+/* ---- ESPELHO: icon badge above title ---- */
+.card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 1.4rem;
+  border-radius: 50%;
+  background: rgba(122, 31, 46, 0.08);
+  border: 1px solid rgba(122, 31, 46, 0.18);
+  color: var(--bordo);
+  transition: background .45s var(--ease), color .45s var(--ease);
+}
+.card__icon .ico { width: 1.5rem; height: 1.5rem; }
+.card:hover .card__icon { background: var(--bordo); color: var(--cream); }
+
+/* ---- COMO FUNCIONA: step icon badge + timeline ---- */
+.steps { position: relative; }
+.steps::before {
+  content: "";
+  position: absolute;
+  top: 1.4rem;
+  bottom: 1.4rem;
+  /* aligns with the centre of the .step__badge column */
+  left: 1.4rem;
+  width: 1px;
+  background: var(--cream-line);
+  z-index: 0;
+}
+.step { position: relative; z-index: 1; }
+.step__num {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+}
+.step__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 1px solid rgba(122, 31, 46, 0.22);
+  color: var(--bordo);
+  opacity: 1;
+  transition: background .4s var(--ease), color .4s var(--ease), transform .4s var(--ease);
+}
+.step__badge .ico { width: 1.4rem; height: 1.4rem; }
+.step:hover .step__badge { background: var(--bordo); color: var(--cream); transform: translateY(-2px); }
+
+/* ---- POSSÍVEL: number + icon row ---- */
+.pcard__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.pcard__ico {
+  width: 1.7rem;
+  height: 1.7rem;
+  opacity: 0.7;
+  transition: opacity .4s var(--ease), transform .4s var(--ease);
+}
+.pcard--light .pcard__ico { color: var(--bordo); }
+.pcard--dark .pcard__ico { color: var(--cream); }
+.pcard:hover .pcard__ico { opacity: 1; transform: translateY(-2px); }
+
+/* ---- SOBRE: credential chips + signature ---- */
+.chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.6rem;
+}
+.chip {
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  padding: 0.4rem 0.95rem;
+  border-radius: 100px;
+  border: 1px solid rgba(240, 235, 225, 0.32);
+  background: rgba(240, 235, 225, 0.06);
+  color: rgba(240, 235, 225, 0.92);
+}
+.sobre__sign {
+  font-family: var(--ff-head);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 2rem;
+  color: var(--cream) !important;
+  margin: 2rem 0 0.2rem;
+  opacity: 0.92;
+}
+
+/* ---- ENCONTROS: benefit checklist + badge ---- */
+.encontro { position: relative; }
+.encontro__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin: 0 0 2rem;
+  margin-top: auto;
+  padding-top: 1.6rem;
+  border-top: 1px solid currentColor;
+}
+.encontro--light .encontro__list { border-top-color: rgba(92, 74, 58, 0.16); }
+.encontro--bordo .encontro__list { border-top-color: rgba(240, 235, 225, 0.18); }
+.encontro__list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+}
+.encontro--light .encontro__list li { color: var(--brown); }
+.encontro--bordo .encontro__list li { color: rgba(240, 235, 225, 0.92); }
+.check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: none;
+  border-radius: 50%;
+}
+.check .ico { width: 0.95rem; height: 0.95rem; stroke-width: 2; }
+.encontro--light .check { background: rgba(59, 94, 58, 0.14); color: var(--green); }
+.encontro--bordo .check { background: rgba(240, 235, 225, 0.16); color: var(--cream); }
+.encontro__badge {
+  position: absolute;
+  top: clamp(1.4rem, 3vw, 2.2rem);
+  right: clamp(1.4rem, 3vw, 2.2rem);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border-radius: 100px;
+  background: var(--cream);
+  color: var(--bordo);
+  font-weight: 500;
+}
+
+/* ---- HERO: floating accent card ---- */
+.hero__badge {
+  position: absolute;
+  left: clamp(0.5rem, 2vw, 1.5rem);
+  bottom: clamp(2rem, 5vw, 3.6rem);
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.85rem 1.3rem;
+  border-radius: 100px;
+  background: rgba(246, 242, 234, 0.92);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(122, 31, 46, 0.16);
+  box-shadow: 0 22px 50px -22px rgba(26, 10, 6, 0.5);
+}
+.hero__badge-dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  flex: none;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 0 rgba(59, 94, 58, 0.45);
+  animation: badgePulse 2.6s ease-out infinite;
+}
+.hero__badge-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brown);
+}
+.hero__badge-text strong {
+  font-family: var(--ff-head);
+  font-weight: 600;
+  font-size: 0.92rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--bordo);
+}
+@keyframes badgePulse { to { box-shadow: 0 0 0 12px rgba(59, 94, 58, 0); } }
+
+/* ---- FOOTER: columns ---- */
+.footer { text-align: left; }
+.footer__cols {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+  padding-bottom: 2.6rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(240, 235, 225, 0.12);
+}
+.footer__col--brand { max-width: 36ch; }
+.footer__head {
+  font-family: var(--ff-body);
+  font-weight: 500;
+  font-size: 0.74rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(240, 235, 225, 0.5);
+  margin-bottom: 1.1rem;
+}
+.footer__nav { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+.footer__nav a {
+  color: rgba(240, 235, 225, 0.78);
+  font-size: 0.95rem;
+  transition: color .3s var(--ease);
+}
+.footer__nav a:hover { color: var(--cream); }
+.footer__social { display: flex; gap: 0.7rem; margin-bottom: 1.4rem; }
+.footer__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.7rem;
+  height: 2.7rem;
+  border-radius: 50%;
+  border: 1px solid rgba(240, 235, 225, 0.22);
+  color: rgba(240, 235, 225, 0.85);
+  transition: background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease), transform .3s var(--ease);
+}
+.footer__icon .ico { width: 1.4rem; height: 1.4rem; }
+.footer__icon:hover {
+  background: var(--cream);
+  color: var(--bordo);
+  border-color: var(--cream);
+  transform: translateY(-2px);
+}
+.footer__cta { margin: 0; display: inline-flex; }
+.footer__copy { margin-top: 0; text-align: center; }
+
+@media (max-width: 860px) {
+  .footer { text-align: center; }
+  .footer__cols { grid-template-columns: 1fr; gap: 2.4rem; text-align: center; }
+  .footer__col--brand { max-width: none; margin-inline: auto; }
+  .footer__nav { align-items: center; }
+  .footer__social { justify-content: center; }
+}
+
+@media (max-width: 600px) {
+  .footer__cta { width: 100%; }
+  .hero__badge { left: 50%; transform: translateX(-50%); bottom: 1.4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__badge-dot { animation: none !important; }
 }
 
 /* ===================================================================
